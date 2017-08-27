@@ -1,4 +1,5 @@
 ---
-title: tags
+title: 我就是我，是颜色不一样的烟火
 date: 2017-08-26 15:35:38
+type: "tags"
 ---
