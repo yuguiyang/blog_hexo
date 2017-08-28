@@ -104,13 +104,13 @@
 
 
 
-<meta name="description" content="前面我们算是简单入门了Pandas，numpy也是数据分析中常用的，这里我们也来简单学习下。 1.numpy基本介绍numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。一个用Python实现的科学计算包。（–百度百科）  numpy有2种基本对象，1ndarray（N-dimensional array object）和 ufunc（universal functi">
+<meta name="description" content="前面我们算是简单入门了Pandas，numpy也是数据分析中常用的，这里我们也来简单学习下。 1.numpy基本介绍numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。一个用Python实现的科学计算包。from 百度百科  numpy有2种基本对象，1ndarray（N-dimensional array object）和 ufunc（universal func">
 <meta name="keywords" content="Python,Numpy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="numpy手册(1)-ndarray">
 <meta property="og:url" content="http://yoursite.com/2017/08/02/numpy-handbook-01/index.html">
 <meta property="og:site_name" content="于贵洋的博客">
-<meta property="og:description" content="前面我们算是简单入门了Pandas，numpy也是数据分析中常用的，这里我们也来简单学习下。 1.numpy基本介绍numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。一个用Python实现的科学计算包。（–百度百科）  numpy有2种基本对象，1ndarray（N-dimensional array object）和 ufunc（universal functi">
+<meta property="og:description" content="前面我们算是简单入门了Pandas，numpy也是数据分析中常用的，这里我们也来简单学习下。 1.numpy基本介绍numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。一个用Python实现的科学计算包。from 百度百科  numpy有2种基本对象，1ndarray（N-dimensional array object）和 ufunc（universal func">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-01.png-blog.photo">
 <meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-02.png-blog.photo">
@@ -119,10 +119,10 @@
 <meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-05.png-blog.photo">
 <meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-06.png-blog.photo">
 <meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-07.png-blog.photo">
-<meta property="og:updated_time" content="2017-08-27T15:14:31.608Z">
+<meta property="og:updated_time" content="2017-08-27T15:17:55.671Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="numpy手册(1)-ndarray">
-<meta name="twitter:description" content="前面我们算是简单入门了Pandas，numpy也是数据分析中常用的，这里我们也来简单学习下。 1.numpy基本介绍numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。一个用Python实现的科学计算包。（–百度百科）  numpy有2种基本对象，1ndarray（N-dimensional array object）和 ufunc（universal functi">
+<meta name="twitter:description" content="前面我们算是简单入门了Pandas，numpy也是数据分析中常用的，这里我们也来简单学习下。 1.numpy基本介绍numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。一个用Python实现的科学计算包。from 百度百科  numpy有2种基本对象，1ndarray（N-dimensional array object）和 ufunc（universal func">
 <meta name="twitter:image" content="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-01.png-blog.photo">
 
 
@@ -455,10 +455,11 @@
 
       
         <p>前面我们算是简单入门了Pandas，numpy也是数据分析中常用的，这里我们也来简单学习下。</p>
-<h1 id="1-numpy基本介绍"><a href="#1-numpy基本介绍" class="headerlink" title="1.numpy基本介绍"></a>1.numpy基本介绍</h1><blockquote class="blockquote-center"><br>numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。一个用Python实现的科学计算包。<br>（–百度百科）<br></blockquote>
+<h1 id="1-numpy基本介绍"><a href="#1-numpy基本介绍" class="headerlink" title="1.numpy基本介绍"></a>1.numpy基本介绍</h1><blockquote class="blockquote-center"><br>numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。<br>一个用Python实现的科学计算包。<br>from 百度百科<br></blockquote>
 
 <p>numpy有2种基本对象，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ndarray（N-dimensional array object）和 ufunc（universal function object）</div></pre></td></tr></table></figure></p>
 <p>ndarray是存储单一数据类型的多维数组，ufunc是能够对数组进行处理的函数。</p>
+<a id="more"></a>
 <h1 id="2-ndarray"><a href="#2-ndarray" class="headerlink" title="2.ndarray"></a>2.ndarray</h1><p>我们先来看看这个数组<br>首先，我们得引入numpy<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div></pre></td></tr></table></figure></p>
 <h2 id="2-1-创建"><a href="#2-1-创建" class="headerlink" title="2.1 创建"></a>2.1 创建</h2><p>数组初始化的话有很多方式：Array creation routines<br>我们可以直接使用list来初始化，array有很多的属性，比如大小，维度，元素个数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">a = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line">b = np.array([<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</div><div class="line">c = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]])</div><div class="line"></div><div class="line">print(a,type(a),<span class="string">',shape:'</span>,a.shape,<span class="string">',ndim:'</span>,a.ndim,<span class="string">',size:'</span>,a.size)</div><div class="line">print(b,type(b),<span class="string">',shape:'</span>,b.shape,<span class="string">',ndim:'</span>,b.ndim,<span class="string">',size:'</span>,b.size)</div><div class="line">print(c,type(c),<span class="string">',shape:'</span>,c.shape,<span class="string">',ndim:'</span>,c.ndim,<span class="string">',size:'</span>,c.size)</div></pre></td></tr></table></figure></p>
 <p><img src="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-01.png-blog.photo" alt="numpy-handbook-01-01"></p>
@@ -554,6 +555,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/08/28/data-analyst-interview-sql-01/" rel="prev" title="SQL笔试题-累计值（月累计、年累计）">
+                SQL笔试题-累计值（月累计、年累计） <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -631,7 +636,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -642,7 +647,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -653,7 +658,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

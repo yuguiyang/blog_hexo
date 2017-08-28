@@ -11,8 +11,9 @@ tags:
 
 # 1.numpy基本介绍
 <blockquote class="blockquote-center">
-numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。一个用Python实现的科学计算包。
-（--百度百科）
+numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。
+一个用Python实现的科学计算包。
+from 百度百科
 </blockquote>
 
 numpy有2种基本对象，
@@ -21,6 +22,8 @@ ndarray（N-dimensional array object）和 ufunc（universal function object）
 ```
 
 ndarray是存储单一数据类型的多维数组，ufunc是能够对数组进行处理的函数。
+
+<!-- more -->
 
 # 2.ndarray
 我们先来看看这个数组

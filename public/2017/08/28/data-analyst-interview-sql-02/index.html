@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Kettle," />
+  <meta name="keywords" content="SQL,笔试题," />
 
 
 
@@ -104,37 +104,27 @@
 
 
 
-<meta name="description" content="在Kettle里面，我们每天执行完调度之后，想要监控下JOB的执行状态，通常我们可以会发送邮件，可以的话，还可以发送短信。 在Kettle里面，发送邮件很方便，这里，我们就简单的测试下。 1. 在作业中发送简单邮件我们只需要使用到这个控件就可以了，这样，一个简单的发送邮件流程就好了">
-<meta name="keywords" content="Kettle">
+<meta name="description" content="SQL笔试题  下面的SQL基于PostgreSQL  1. 行转列背景我们写SQL的时候，经常会遇到一些列转行、行转列的情况，有的时候是为了展现需要，有的时候是代码里就得这样转一下。总之嘞，得掌握这个技巧。下面就开始我们的练习。 测试数据1234567891011121314151617181920CREATE TABLE interview.tm_score(  stu_name charac">
+<meta name="keywords" content="SQL,笔试题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kettle手册（九）- 发送邮件">
-<meta property="og:url" content="http://yoursite.com/2017/03/30/Kettle-handbook-09/index.html">
+<meta property="og:title" content="SQL笔试题-行转列">
+<meta property="og:url" content="http://yoursite.com/2017/08/28/data-analyst-interview-sql-02/index.html">
 <meta property="og:site_name" content="于贵洋的博客">
-<meta property="og:description" content="在Kettle里面，我们每天执行完调度之后，想要监控下JOB的执行状态，通常我们可以会发送邮件，可以的话，还可以发送短信。 在Kettle里面，发送邮件很方便，这里，我们就简单的测试下。 1. 在作业中发送简单邮件我们只需要使用到这个控件就可以了，这样，一个简单的发送邮件流程就好了">
+<meta property="og:description" content="SQL笔试题  下面的SQL基于PostgreSQL  1. 行转列背景我们写SQL的时候，经常会遇到一些列转行、行转列的情况，有的时候是为了展现需要，有的时候是代码里就得这样转一下。总之嘞，得掌握这个技巧。下面就开始我们的练习。 测试数据1234567891011121314151617181920CREATE TABLE interview.tm_score(  stu_name charac">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-01.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-02.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-03.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-04.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-05.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-06.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-07.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-08.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-09.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-10.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-11.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-12.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-13.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-14.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-15.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-16.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-17.png-blog.photo">
-<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-18.png-blog.photo">
-<meta property="og:updated_time" content="2017-08-27T14:05:09.684Z">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-01.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-02.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-03.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-04.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-05.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-06.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-07.png-blog.photo">
+<meta property="og:image" content="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-08.png-blog.photo">
+<meta property="og:updated_time" content="2017-08-28T05:54:30.181Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kettle手册（九）- 发送邮件">
-<meta name="twitter:description" content="在Kettle里面，我们每天执行完调度之后，想要监控下JOB的执行状态，通常我们可以会发送邮件，可以的话，还可以发送短信。 在Kettle里面，发送邮件很方便，这里，我们就简单的测试下。 1. 在作业中发送简单邮件我们只需要使用到这个控件就可以了，这样，一个简单的发送邮件流程就好了">
-<meta name="twitter:image" content="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-01.png-blog.photo">
+<meta name="twitter:title" content="SQL笔试题-行转列">
+<meta name="twitter:description" content="SQL笔试题  下面的SQL基于PostgreSQL  1. 行转列背景我们写SQL的时候，经常会遇到一些列转行、行转列的情况，有的时候是为了展现需要，有的时候是代码里就得这样转一下。总之嘞，得掌握这个技巧。下面就开始我们的练习。 测试数据1234567891011121314151617181920CREATE TABLE interview.tm_score(  stu_name charac">
+<meta name="twitter:image" content="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-01.png-blog.photo">
 
 
 
@@ -164,13 +154,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/30/Kettle-handbook-09/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/28/data-analyst-interview-sql-02/"/>
 
 
 
 
 
-  <title>Kettle手册（九）- 发送邮件 | 于贵洋的博客</title>
+  <title>SQL笔试题-行转列 | 于贵洋的博客</title>
   
 
 
@@ -371,7 +361,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/Kettle-handbook-09/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/data-analyst-interview-sql-02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="于贵洋">
@@ -388,7 +378,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Kettle手册（九）- 发送邮件</h1>
+          <h1 class="post-title" itemprop="name headline">SQL笔试题-行转列</h1>
         
 
         <div class="post-meta">
@@ -400,8 +390,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-30T11:24:44+08:00">
-                2017-03-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T13:11:00+08:00">
+                2017-08-28
               </time>
             
 
@@ -423,8 +413,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ETL-Kettle/" itemprop="url" rel="index">
-                    <span itemprop="name">ETL-Kettle</span>
+                  <a href="/categories/笔试题/" itemprop="url" rel="index">
+                    <span itemprop="name">笔试题</span>
                   </a>
                 </span>
 
@@ -465,13 +455,45 @@
       
 
       
-        <p>在Kettle里面，我们每天执行完调度之后，想要监控下JOB的执行状态，通常我们可以会发送邮件，可以的话，还可以发送短信。</p>
-<p>在Kettle里面，发送邮件很方便，这里，我们就简单的测试下。</p>
-<h1 id="1-在作业中发送简单邮件"><a href="#1-在作业中发送简单邮件" class="headerlink" title="1. 在作业中发送简单邮件"></a>1. 在作业中发送简单邮件</h1><p>我们只需要使用到这个控件就可以了，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-01.png-blog.photo" alt="Kettle-handbook-09-01.png"><br>这样，一个简单的发送邮件流程就好了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-02.png-blog.photo" alt="Kettle-handbook-09-02.png"></p>
+        <p>SQL笔试题</p>
+<blockquote>
+<p>下面的SQL基于PostgreSQL</p>
+</blockquote>
+<h1 id="1-行转列"><a href="#1-行转列" class="headerlink" title="1. 行转列"></a>1. 行转列</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我们写SQL的时候，经常会遇到一些列转行、行转列的情况，有的时候是为了展现需要，有的时候是代码里就得这样转一下。总之嘞，得掌握这个技巧。下面就开始我们的练习。</p>
+<h2 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> interview.tm_score</div><div class="line">(</div><div class="line">  stu_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">20</span>), <span class="comment">-- 学生名称</span></div><div class="line">  course_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">20</span>), <span class="comment">-- 课程名称</span></div><div class="line">  score <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>) <span class="comment">-- 分数</span></div><div class="line">)</div><div class="line"><span class="keyword">WITH</span> (</div><div class="line">  OIDS=<span class="literal">FALSE</span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="comment">-- 初始化数据</span></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'路飞'</span>,<span class="string">'数学'</span>,<span class="number">100</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'路飞'</span>,<span class="string">'语文'</span>,<span class="number">62</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'路飞'</span>,<span class="string">'英语'</span>,<span class="number">98</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'索隆'</span>,<span class="string">'数学'</span>,<span class="number">40</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'索隆'</span>,<span class="string">'语文'</span>,<span class="number">57</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'索隆'</span>,<span class="string">'英语'</span>,<span class="number">40</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'娜美'</span>,<span class="string">'数学'</span>,<span class="number">42</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'娜美'</span>,<span class="string">'语文'</span>,<span class="number">44</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'娜美'</span>,<span class="string">'英语'</span>,<span class="number">28</span>);</div></pre></td></tr></table></figure>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-01.png-blog.photo" alt="data-analyst-interview-sql-02-01"></p>
 <a id="more"></a>
-<p>控件的配置：<br>收件人，抄送啊，信息，自行填写就行，多个收件人，使用“空格”分隔<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-03.png-blog.photo" alt="Kettle-handbook-09-03.png"><br>在服务器这里，我们填上服务器的信息就可以了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-04.png-blog.photo" alt="Kettle-handbook-09-04.png"><br>这里是邮件消息的一些配置，<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-05.png-blog.photo" alt="Kettle-handbook-09-05.png"><br>暂时先到这里，我们测试下结果<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-06.png-blog.photo" alt="Kettle-handbook-09-06.png"><br>然后，查看邮箱，我们会接收到这个邮件，刚刚简单测了下这个“回复名称”，就是<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-07.png-blog.photo" alt="Kettle-handbook-09-07.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-08.png-blog.photo" alt="Kettle-handbook-09-08.png"><br>这里试过中文，会有问题，有乱码，可能是Windows下的原因，没有再去测试验证<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-09.png-blog.photo" alt="Kettle-handbook-09-09.png"><br>就是收到邮件时的一个发件人的名称，不同邮箱显示的不一样</p>
-<h1 id="2-增加附件"><a href="#2-增加附件" class="headerlink" title="2. 增加附件"></a>2. 增加附件</h1><p>附件的话，也很简单，上面的面板中直接配置就可以了<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-10.png-blog.photo" alt="Kettle-handbook-09-10.png"><br>然后，我们需要将待发送的邮件，添加到结果集中<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-11.png-blog.photo" alt="Kettle-handbook-09-11.png"><br>在控件中，我们添加好文件就行了。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-12.png-blog.photo" alt="Kettle-handbook-09-12.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-13.png-blog.photo" alt="Kettle-handbook-09-13.png"><br>我们再次发送，验证下<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-14.png-blog.photo" alt="Kettle-handbook-09-14.png"><br>好了，附件也可以了，思路就是这样的，实际应用时，可能还有些问题得注意下</p>
-<h1 id="3-自定义邮件内容"><a href="#3-自定义邮件内容" class="headerlink" title="3. 自定义邮件内容"></a>3. 自定义邮件内容</h1><p>到这里，我们会看到，邮件的正文内容，可能并不是我们想要的， 我们想要的可能是这样的信息<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-15.png-blog.photo" alt="Kettle-handbook-09-15.png"><br>这就需要自定义正文内容，我们需要勾选下面这个选项<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-16.png-blog.photo" alt="Kettle-handbook-09-16.png"><br>这里是可以使用变量的，我们可以拼接HTML来实现<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-17.png-blog.photo" alt="Kettle-handbook-09-17.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-09-18.png-blog.photo" alt="Kettle-handbook-09-18.png"><br>好了，邮件的介绍，大概就这些，在转换中，也是可以使用的，大同小异</p>
+<p>我们先来思考第一个问题：<br>我们怎样可以将课程变成列呢，类似交叉表那样？<br>最容易想到的方法，就是使用case when了</p>
+<h3 id="case-when"><a href="#case-when" class="headerlink" title="case when"></a>case when</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> </div><div class="line">	stu_name,</div><div class="line">	<span class="keyword">max</span>(<span class="keyword">case</span> course_name <span class="keyword">when</span> <span class="string">'数学'</span> <span class="keyword">then</span> score <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">end</span>) <span class="keyword">as</span> <span class="string">"数学"</span>, </div><div class="line">	<span class="keyword">max</span>(<span class="keyword">case</span> course_name <span class="keyword">when</span> <span class="string">'语文'</span> <span class="keyword">then</span> score <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">end</span>) <span class="keyword">as</span> <span class="string">"语文"</span>, </div><div class="line">	<span class="keyword">max</span>(<span class="keyword">case</span> course_name <span class="keyword">when</span> <span class="string">'英语'</span> <span class="keyword">then</span> score <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">end</span>) <span class="keyword">as</span> <span class="string">"英语"</span></div><div class="line">	</div><div class="line"><span class="keyword">from</span> </div><div class="line">	interview.tm_score</div><div class="line"><span class="keyword">group</span> <span class="keyword">by</span> </div><div class="line">	stu_name</div><div class="line">;</div></pre></td></tr></table></figure>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-02.png-blog.photo" alt="data-analyst-interview-sql-02-02"></p>
+<h3 id="crosstab"><a href="#crosstab" class="headerlink" title="crosstab"></a>crosstab</h3><p>在新版本的PostgreSQL中有一个extension，可以方便的实现行转列<br>我们需要先安装这个扩展，我看了下，PostgreSQL8.3以后的版本都可以安装<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> extension tablefunc</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>官网地址：<a href="https://www.postgresql.org/docs/9.5/static/tablefunc.html" target="_blank" rel="external">https://www.postgresql.org/docs/9.5/static/tablefunc.html</a></p>
+</blockquote>
+<p>安装完后，会有这么几个函数</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-03.png-blog.photo" alt="data-analyst-interview-sql-02-03"></p>
+<p>我们可以使用crosstab来实现上面的行转列<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> crosstab(</div><div class="line">	<span class="string">'select stu_name,course_name,score from interview.tm_score'</span></div><div class="line">) <span class="keyword">as</span> ct(stu_name <span class="built_in">varchar</span>(<span class="number">20</span>) ,<span class="string">"数学"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>),<span class="string">"语文"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>), <span class="string">"英语"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>))</div></pre></td></tr></table></figure></p>
+<p>结果也是一样的，我们传入一个SQL，SQL里面返回3列（这3列都是默认处理的，第一列是主字段，第2列是要拆成列的字段，第3列是要显示的值），最后因为返回值是record，所以我们要定义一下类型。</p>
+<p>这里，顺便看看这个函数的用法</p>
+<h4 id="要转成列的字段有Null"><a href="#要转成列的字段有Null" class="headerlink" title="要转成列的字段有Null"></a>要转成列的字段有Null</h4><p>是这样一种情况：不是所有的同学都有3门课程的分数<br>我们删掉了几条记录来模拟<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-04.png-blog.photo" alt="data-analyst-interview-sql-02-04"></p>
+<p>这时候使用crosstab，结果会有问题</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-05.png-blog.photo" alt="data-analyst-interview-sql-02-05"></p>
+<p>数据会自动从第一列开始，导致错误的数据<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- crosstab(text source_sql, text category_sql)</span></div><div class="line"></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> crosstab(</div><div class="line">	<span class="string">'select stu_name,course_name,score from interview.tm_score'</span>,<span class="string">'select distinct course_name from interview.tm_score'</span></div><div class="line">) <span class="keyword">as</span> ct(stu_name <span class="built_in">varchar</span>(<span class="number">20</span>) ,<span class="string">"数学"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>),<span class="string">"语文"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>), <span class="string">"英语"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>))</div></pre></td></tr></table></figure></p>
+<p>这时候，数据就对了</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-06.png-blog.photo" alt="data-analyst-interview-sql-02-06"></p>
+<h4 id="source-sql-多于3列"><a href="#source-sql-多于3列" class="headerlink" title="source_sql 多于3列"></a>source_sql 多于3列</h4><p>这种情况是，我们查询的结果不单单有上面说的3列，可能还有其他字段，<br>比如，我们可以在上面的测试数据上加一个班级列<br>我们同样也是使用上面的方式解决</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">alter</span> <span class="keyword">table</span> interview.tm_score <span class="keyword">add</span> <span class="keyword">column</span> stu_class <span class="built_in">varchar</span>(<span class="number">10</span>);</div><div class="line"></div><div class="line"><span class="keyword">update</span> interview.tm_score <span class="keyword">set</span> stu_class=<span class="string">'一班'</span> <span class="keyword">where</span> stu_name <span class="keyword">in</span> (<span class="string">'路飞'</span>,<span class="string">'索隆'</span>);</div><div class="line"><span class="keyword">update</span> interview.tm_score <span class="keyword">set</span> stu_class=<span class="string">'二班'</span> <span class="keyword">where</span> stu_name <span class="keyword">not</span> <span class="keyword">in</span> (<span class="string">'路飞'</span>,<span class="string">'索隆'</span>);</div><div class="line"></div><div class="line"><span class="keyword">select</span> *<span class="keyword">from</span> crosstab(</div><div class="line">	<span class="string">'select stu_name,stu_class,course_name,score from interview.tm_score'</span>,<span class="string">'select distinct course_name from interview.tm_score'</span></div><div class="line">) <span class="keyword">as</span> ct(stu_name <span class="built_in">varchar</span>(<span class="number">20</span>) ,stu_class <span class="built_in">varchar</span>(<span class="number">10</span>),<span class="string">"数学"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>),<span class="string">"语文"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>), <span class="string">"英语"</span> <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>))</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这里我们六个思考题，有这样一组数据：</p>
+</blockquote>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-07.png-blog.photo" alt="data-analyst-interview-sql-02-07"></p>
+<p>我们想查询出这样格式的数据</p>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-08.png-blog.photo" alt="data-analyst-interview-sql-02-08"></p>
+<p>大家可以练习下这个SQL该怎么写</p>
+<h1 id="列转行"><a href="#列转行" class="headerlink" title="列转行"></a>列转行</h1><p>我们可以把行转成列，那要怎样把列转成行呢？</p>
+<h2 id="union-all"><a href="#union-all" class="headerlink" title="union all"></a>union all</h2><p>最简单的方法是直接union all,既然要放到一列里面，那字段类型肯定要一样，所以直接根据不同字段去union all 就好了</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> stu_name,<span class="string">"数学"</span> <span class="keyword">from</span> xxx</div><div class="line"><span class="keyword">union</span> all </div><div class="line"><span class="keyword">select</span> stu_name,<span class="string">"语文"</span> <span class="keyword">from</span> xxx</div><div class="line"><span class="keyword">union</span> all</div><div class="line"><span class="keyword">select</span> stu_name,<span class="string">"英语"</span> <span class="keyword">from</span> xxx</div></pre></td></tr></table></figure>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>这里简单介绍了几种常见的处理方法，实际使用中，一定还有更好地方法、或一些特殊的问题，欢迎大家分享、反馈。</p>
 
       
     </div>
@@ -500,7 +522,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2017/03/30/Kettle-handbook-09/" title="Kettle手册（九）- 发送邮件">http://yoursite.com/2017/03/30/Kettle-handbook-09/</a>
+    <a href="http://yoursite.com/2017/08/28/data-analyst-interview-sql-02/" title="SQL笔试题-行转列">http://yoursite.com/2017/08/28/data-analyst-interview-sql-02/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -515,7 +537,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Kettle/" rel="tag"># Kettle</a>
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
+          
+            <a href="/tags/笔试题/" rel="tag"># 笔试题</a>
           
         </div>
       
@@ -528,8 +552,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/29/Kettle-handbook-08/" rel="next" title="Kettle手册（八）- 循环">
-                <i class="fa fa-chevron-left"></i> Kettle手册（八）- 循环
+              <a href="/2017/08/28/data-analyst-interview-sql-01/" rel="next" title="SQL笔试题-累计值（月累计、年累计）">
+                <i class="fa fa-chevron-left"></i> SQL笔试题-累计值（月累计、年累计）
               </a>
             
           </div>
@@ -537,10 +561,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/10/Kettle-handbook-10/" rel="prev" title="Kettle手册（十）- 跨库查询">
-                Kettle手册（十）- 跨库查询 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -710,7 +730,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-在作业中发送简单邮件"><span class="nav-number">1.</span> <span class="nav-text">1. 在作业中发送简单邮件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-增加附件"><span class="nav-number">2.</span> <span class="nav-text">2. 增加附件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-自定义邮件内容"><span class="nav-number">3.</span> <span class="nav-text">3. 自定义邮件内容</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-行转列"><span class="nav-number">1.</span> <span class="nav-text">1. 行转列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试数据"><span class="nav-number">1.2.</span> <span class="nav-text">测试数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#case-when"><span class="nav-number">1.2.1.</span> <span class="nav-text">case when</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#crosstab"><span class="nav-number">1.2.2.</span> <span class="nav-text">crosstab</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#要转成列的字段有Null"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">要转成列的字段有Null</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#source-sql-多于3列"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">source_sql 多于3列</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#列转行"><span class="nav-number">2.</span> <span class="nav-text">列转行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#union-all"><span class="nav-number">2.1.</span> <span class="nav-text">union all</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
 
           </div>

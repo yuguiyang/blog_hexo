@@ -351,6 +351,309 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/data-analyst-interview-sql-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/28/data-analyst-interview-sql-02/" itemprop="url">SQL笔试题-行转列</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T13:11:00+08:00">
+                2017-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔试题/" itemprop="url" rel="index">
+                    <span itemprop="name">笔试题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>SQL笔试题</p>
+<blockquote>
+<p>下面的SQL基于PostgreSQL</p>
+</blockquote>
+<h1 id="1-行转列"><a href="#1-行转列" class="headerlink" title="1. 行转列"></a>1. 行转列</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>我们写SQL的时候，经常会遇到一些列转行、行转列的情况，有的时候是为了展现需要，有的时候是代码里就得这样转一下。总之嘞，得掌握这个技巧。下面就开始我们的练习。</p>
+<h2 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> interview.tm_score</div><div class="line">(</div><div class="line">  stu_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">20</span>), <span class="comment">-- 学生名称</span></div><div class="line">  course_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">20</span>), <span class="comment">-- 课程名称</span></div><div class="line">  score <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>) <span class="comment">-- 分数</span></div><div class="line">)</div><div class="line"><span class="keyword">WITH</span> (</div><div class="line">  OIDS=<span class="literal">FALSE</span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="comment">-- 初始化数据</span></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'路飞'</span>,<span class="string">'数学'</span>,<span class="number">100</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'路飞'</span>,<span class="string">'语文'</span>,<span class="number">62</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'路飞'</span>,<span class="string">'英语'</span>,<span class="number">98</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'索隆'</span>,<span class="string">'数学'</span>,<span class="number">40</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'索隆'</span>,<span class="string">'语文'</span>,<span class="number">57</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'索隆'</span>,<span class="string">'英语'</span>,<span class="number">40</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'娜美'</span>,<span class="string">'数学'</span>,<span class="number">42</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'娜美'</span>,<span class="string">'语文'</span>,<span class="number">44</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> interview.tm_score <span class="keyword">values</span>(<span class="string">'娜美'</span>,<span class="string">'英语'</span>,<span class="number">28</span>);</div></pre></td></tr></table></figure>
+<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-02-01.png-blog.photo" alt="data-analyst-interview-sql-02-01"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/28/data-analyst-interview-sql-02/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/data-analyst-interview-sql-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="于贵洋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于贵洋的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/28/data-analyst-interview-sql-01/" itemprop="url">SQL笔试题-累计值（月累计、年累计）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T11:11:00+08:00">
+                2017-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔试题/" itemprop="url" rel="index">
+                    <span itemprop="name">笔试题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>SQL笔试题</p>
+<blockquote>
+<p>下面的SQL基于PostgreSQL</p>
+</blockquote>
+<h1 id="1-累计值（月累计、年累计）"><a href="#1-累计值（月累计、年累计）" class="headerlink" title="1. 累计值（月累计、年累计）"></a>1. 累计值（月累计、年累计）</h1><h2 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 图书的销量表</span></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> interview.tm_book_sales</div><div class="line">(</div><div class="line">  calendar_date <span class="built_in">date</span>, <span class="comment">-- 日期</span></div><div class="line">  book_name <span class="built_in">character</span> <span class="built_in">varying</span>(<span class="number">100</span>), <span class="comment">-- 图书名称</span></div><div class="line">  sales <span class="built_in">numeric</span>(<span class="number">10</span>,<span class="number">0</span>) <span class="comment">-- 销量</span></div><div class="line">)</div><div class="line"><span class="keyword">WITH</span> (</div><div class="line">  OIDS=<span class="literal">FALSE</span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="comment">-- 测试数据</span></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-01'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">56</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-02'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">100</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-03'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">70</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-06'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">11</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-07'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">65</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-08'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">9</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-09'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">30</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-10'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">56</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-01'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">18</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-02'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">40</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-03'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">2</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-04'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">22</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-05'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">48</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-07'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">71</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-09'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">73</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-01-10'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">37</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-03'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">5</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-05'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">46</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-06'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">35</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-07'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">10</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-09'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">30</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-10'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">12</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-13'</span>,<span class="string">'解忧杂货店'</span>,<span class="number">43</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-01'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">10</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-04'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">78</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-10'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">50</span>);</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tm_book_sales <span class="keyword">values</span>(<span class="string">'2017-02-20'</span>,<span class="string">'雪落香杉树'</span>,<span class="number">93</span>);</div></pre></td></tr></table></figure>
+<p>现在呢，我们有了图书每天的销量数据，下面，我们思考1个问题：<br>我想要统计每本图书的当月累计销量，应该怎么做呢？</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/28/data-analyst-interview-sql-01/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/02/numpy-handbook-01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -443,41 +746,18 @@
 
       
         
-          
-            <p>前面我们算是简单入门了Pandas，numpy也是数据分析中常用的，这里我们也来简单学习下。</p>
-<h1 id="1-numpy基本介绍"><a href="#1-numpy基本介绍" class="headerlink" title="1.numpy基本介绍"></a>1.numpy基本介绍</h1><blockquote class="blockquote-center"><br>numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。一个用Python实现的科学计算包。<br>（–百度百科）<br></blockquote>
+          <p>前面我们算是简单入门了Pandas，numpy也是数据分析中常用的，这里我们也来简单学习下。</p>
+<h1 id="1-numpy基本介绍"><a href="#1-numpy基本介绍" class="headerlink" title="1.numpy基本介绍"></a>1.numpy基本介绍</h1><blockquote class="blockquote-center"><br>numpy是Python的一种开源数值计算扩展，这种工具可以用来存储和处理大型矩阵。<br>一个用Python实现的科学计算包。<br>from 百度百科<br></blockquote>
 
 <p>numpy有2种基本对象，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ndarray（N-dimensional array object）和 ufunc（universal function object）</div></pre></td></tr></table></figure></p>
 <p>ndarray是存储单一数据类型的多维数组，ufunc是能够对数组进行处理的函数。</p>
-<h1 id="2-ndarray"><a href="#2-ndarray" class="headerlink" title="2.ndarray"></a>2.ndarray</h1><p>我们先来看看这个数组<br>首先，我们得引入numpy<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div></pre></td></tr></table></figure></p>
-<h2 id="2-1-创建"><a href="#2-1-创建" class="headerlink" title="2.1 创建"></a>2.1 创建</h2><p>数组初始化的话有很多方式：Array creation routines<br>我们可以直接使用list来初始化，array有很多的属性，比如大小，维度，元素个数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">a = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line">b = np.array([<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</div><div class="line">c = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]])</div><div class="line"></div><div class="line">print(a,type(a),<span class="string">',shape:'</span>,a.shape,<span class="string">',ndim:'</span>,a.ndim,<span class="string">',size:'</span>,a.size)</div><div class="line">print(b,type(b),<span class="string">',shape:'</span>,b.shape,<span class="string">',ndim:'</span>,b.ndim,<span class="string">',size:'</span>,b.size)</div><div class="line">print(c,type(c),<span class="string">',shape:'</span>,c.shape,<span class="string">',ndim:'</span>,c.ndim,<span class="string">',size:'</span>,c.size)</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-01.png-blog.photo" alt="numpy-handbook-01-01"></p>
-<p>这里呢，我们定义了一维数组和二维数组，比如c，是3行3列的2维数组，元素个数是9个<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">numpy.array(object, dtype=<span class="keyword">None</span>, copy=<span class="keyword">True</span>, order=<span class="string">'K'</span>, subok=<span class="keyword">False</span>, ndmin=<span class="number">0</span>)</div></pre></td></tr></table></figure></p>
-<p>这里，我们再说下这个shape，这个属性可以修改<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#原来是4行3列</span></div><div class="line">c = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>],[<span class="number">0</span>,<span class="number">0</span>,<span class="number">7</span>]])</div><div class="line">print(c)</div><div class="line"><span class="comment">#我们改为3行4列</span></div><div class="line">c.shape=(<span class="number">3</span>,<span class="number">4</span>)</div><div class="line">print(c)</div><div class="line"><span class="comment">#改为2行6列</span></div><div class="line">c.shape=(<span class="number">2</span>,<span class="number">6</span>)</div><div class="line">print(c)</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-02.png-blog.photo" alt="numpy-handbook-01-02"></p>
-<p>这里需要注意下，如果某个轴的元素为-1，将根据数组元素的个数，自动计算长度<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">c.shape=(<span class="number">1</span>,<span class="number">-1</span>)</div><div class="line">print(c)</div><div class="line">c.shape=(<span class="number">-1</span>,<span class="number">1</span>)</div><div class="line">print(c)</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-03.png-blog.photo" alt="numpy-handbook-01-03"></p>
-<p>这里的shape是改变原来的数组，另一个method，可以创建一个改变shape的新数组，而原数组保持不变<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">c = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>],[<span class="number">0</span>,<span class="number">0</span>,<span class="number">7</span>]])</div><div class="line">print(<span class="string">'c:'</span>,c)</div><div class="line">d = c.reshape(<span class="number">2</span>,<span class="number">6</span>)</div><div class="line">print(<span class="string">'c:'</span>,c)</div><div class="line">print(<span class="string">'d:'</span>,d)</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-04.png-blog.photo" alt="numpy-handbook-01-04"></p>
-<p>这里要注意的是，c和d共享内存数据存储内存区域，c变了，d也会变<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">print(c[<span class="number">0</span>])</div><div class="line"><span class="comment">#修改c[0]</span></div><div class="line">c[<span class="number">0</span>]=[<span class="number">-9</span>,<span class="number">-8</span>,<span class="number">-3</span>]</div><div class="line">print(<span class="string">'c:'</span>,c)</div><div class="line">print(<span class="string">'d:'</span>,d)</div></pre></td></tr></table></figure></p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-05.png-blog.photo" alt="numpy-handbook-01-05"></p>
-<p>我们可以通过dtype来获取元素的类型，我们可以在初始化的时候，指定dtype<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">c = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line">print(c.dtype) <span class="comment">#int32</span></div><div class="line"></div><div class="line">d = np.array([<span class="number">1.1</span>,<span class="number">3.3</span>])</div><div class="line">print(d.dtype) <span class="comment">#float64</span></div></pre></td></tr></table></figure></p>
-<p>下面，我们来看看常用的初始化方法</p>
-<h3 id="arange"><a href="#arange" class="headerlink" title="arange"></a>arange</h3><p>通过指定开始值，结束值和步长来创建一维数组，这里不包过终值<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">arange([start,] stop[, step,], dtype=<span class="keyword">None</span>)</div><div class="line"></div><div class="line">np.arange(<span class="number">3</span>)</div><div class="line">Out[<span class="number">51</span>]: array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])</div><div class="line"></div><div class="line">np.arange(<span class="number">1</span>,<span class="number">10</span>,<span class="number">3</span>)</div><div class="line">Out[<span class="number">52</span>]: array([<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>])</div></pre></td></tr></table></figure></p>
-<h3 id="linspace"><a href="#linspace" class="headerlink" title="linspace"></a>linspace</h3><p>通过指定开始值，终值和元素个数，来创建数组，这里包括终值<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">np.linspace(<span class="number">1</span>,<span class="number">10</span>,<span class="number">5</span>)</div><div class="line">Out[<span class="number">53</span>]: array([  <span class="number">1.</span>  ,   <span class="number">3.25</span>,   <span class="number">5.5</span> ,   <span class="number">7.75</span>,  <span class="number">10.</span>  ])</div><div class="line"></div><div class="line">np.linspace(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</div><div class="line">Out[<span class="number">54</span>]: array([ <span class="number">1.</span> ,  <span class="number">1.5</span>,  <span class="number">2.</span> ])</div></pre></td></tr></table></figure></p>
-<h3 id="np-zeros-np-ones"><a href="#np-zeros-np-ones" class="headerlink" title="np.zeros,np.ones"></a>np.zeros,np.ones</h3><p>这2个函数可以初始化指定长度或形状的全0或全1的数组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">np.ones(<span class="number">3</span>)</div><div class="line">Out[<span class="number">202</span>]: array([ <span class="number">1.</span>,  <span class="number">1.</span>,  <span class="number">1.</span>])</div><div class="line"></div><div class="line">np.ones([<span class="number">2</span>,<span class="number">2</span>])</div><div class="line">Out[<span class="number">203</span>]: </div><div class="line">array([[ <span class="number">1.</span>,  <span class="number">1.</span>],</div><div class="line">       [ <span class="number">1.</span>,  <span class="number">1.</span>]])</div><div class="line"></div><div class="line">np.zeros(<span class="number">5</span>)</div><div class="line">Out[<span class="number">204</span>]: array([ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>])</div><div class="line"></div><div class="line">np.zeros([<span class="number">4</span>,<span class="number">3</span>])</div><div class="line">Out[<span class="number">205</span>]: </div><div class="line">array([[ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>],</div><div class="line">       [ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>],</div><div class="line">       [ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>],</div><div class="line">       [ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>]])</div></pre></td></tr></table></figure></p>
-<h3 id="np-empty"><a href="#np-empty" class="headerlink" title="np.empty"></a>np.empty</h3><p>可以创建一个没有任何具体值得数组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">np.empty(<span class="number">2</span>)</div><div class="line">Out[<span class="number">211</span>]: array([  <span class="number">7.74860419e-304</span>,   <span class="number">7.74860419e-304</span>])</div><div class="line"></div><div class="line">np.empty(<span class="number">2</span>,dtype=int)</div><div class="line">Out[<span class="number">214</span>]: array([        <span class="number">-1</span>, <span class="number">2147483647</span>])</div><div class="line"></div><div class="line">np.empty((<span class="number">3</span>,<span class="number">3</span>),dtype=np.float64)</div><div class="line">Out[<span class="number">215</span>]: </div><div class="line">array([[  <span class="number">4.94065646e-324</span>,   <span class="number">9.88131292e-324</span>,   <span class="number">1.48219694e-323</span>],</div><div class="line">       [  <span class="number">1.97626258e-323</span>,   <span class="number">2.47032823e-323</span>,   <span class="number">2.96439388e-323</span>],</div><div class="line">       [  <span class="number">3.45845952e-323</span>,   <span class="number">3.95252517e-323</span>,   <span class="number">4.44659081e-323</span>]])</div></pre></td></tr></table></figure></p>
-<p>这要注意下，empty初始化的都是没有意思的值，不一定会初始化为0</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-06.png-blog.photo" alt="numpy-handbook-01-06"></p>
-<h2 id="2-2-存取元素"><a href="#2-2-存取元素" class="headerlink" title="2.2 存取元素"></a>2.2 存取元素</h2><p>这里直接粘贴一个例子，原始教程在这：<a href="http://old.sebug.net/paper/books/scipydoc/numpy_intro.html" target="_blank" rel="external">http://old.sebug.net/paper/books/scipydoc/numpy_intro.html</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.arange(<span class="number">10</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">5</span>]    <span class="comment"># 用整数作为下标可以获取数组中的某个元素</span></div><div class="line"><span class="number">5</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">3</span>:<span class="number">5</span>]  <span class="comment"># 用范围作为下标获取数组的一个切片，包括a[3]不包括a[5]</span></div><div class="line">array([<span class="number">3</span>, <span class="number">4</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[:<span class="number">5</span>]   <span class="comment"># 省略开始下标，表示从a[0]开始</span></div><div class="line">array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[:<span class="number">-1</span>]  <span class="comment"># 下标可以使用负数，表示从数组后往前数</span></div><div class="line">array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">2</span>:<span class="number">4</span>] = <span class="number">100</span>,<span class="number">101</span>    <span class="comment"># 下标还可以用来修改元素的值</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a</div><div class="line">array([  <span class="number">0</span>,   <span class="number">1</span>, <span class="number">100</span>, <span class="number">101</span>,   <span class="number">4</span>,   <span class="number">5</span>,   <span class="number">6</span>,   <span class="number">7</span>,   <span class="number">8</span>,   <span class="number">9</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">1</span>:<span class="number">-1</span>:<span class="number">2</span>]   <span class="comment"># 范围中的第三个参数表示步长，2表示隔一个元素取一个元素</span></div><div class="line">array([  <span class="number">1</span>, <span class="number">101</span>,   <span class="number">5</span>,   <span class="number">7</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[::<span class="number">-1</span>] <span class="comment"># 省略范围的开始下标和结束下标，步长为-1，整个数组头尾颠倒</span></div><div class="line">array([  <span class="number">9</span>,   <span class="number">8</span>,   <span class="number">7</span>,   <span class="number">6</span>,   <span class="number">5</span>,   <span class="number">4</span>, <span class="number">101</span>, <span class="number">100</span>,   <span class="number">1</span>,   <span class="number">0</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">5</span>:<span class="number">1</span>:<span class="number">-2</span>] <span class="comment"># 步长为负数时，开始下标必须大于结束下标</span></div><div class="line">array([  <span class="number">5</span>, <span class="number">101</span>])</div></pre></td></tr></table></figure></p>
-<p>就2维数组来说</p>
-<p><img src="http://7xl61k.com1.z0.glb.clouddn.com/numpy-handbook-01-07.png-blog.photo" alt="numpy-handbook-01-07"></p>
-<p>这是基本的获取方式，还有些高级的方法</p>
-<h3 id="使用整数序列"><a href="#使用整数序列" class="headerlink" title="使用整数序列"></a>使用整数序列</h3><p>这里简单来2个练习，原文例子很多，就是通过下标来筛选数据<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">a = np.arange(<span class="number">-5</span>,<span class="number">5</span>,<span class="number">1</span>)</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">68</span>]: array([<span class="number">-5</span>, <span class="number">-4</span>, <span class="number">-3</span>, <span class="number">-2</span>, <span class="number">-1</span>,  <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>])</div><div class="line"></div><div class="line">a[[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>]]</div><div class="line">Out[<span class="number">69</span>]: array([<span class="number">-4</span>, <span class="number">-2</span>,  <span class="number">0</span>])</div><div class="line"></div><div class="line"><span class="comment">### 使用布尔数组</span></div><div class="line"></div><div class="line">按照传入的布尔数组，只有为<span class="keyword">True</span>的才返回，也叫布尔型索引</div><div class="line">``` python</div><div class="line">a=np.array([<span class="number">-3</span>,<span class="number">1</span>,<span class="number">5</span>])</div><div class="line"></div><div class="line">a</div><div class="line">Out[<span class="number">72</span>]: array([<span class="number">-3</span>,  <span class="number">1</span>,  <span class="number">5</span>])</div><div class="line"></div><div class="line">a[[<span class="keyword">False</span>,<span class="keyword">True</span>,<span class="keyword">False</span>]]</div><div class="line">Out[<span class="number">73</span>]: array([<span class="number">1</span>])</div><div class="line"></div><div class="line">a[[<span class="keyword">True</span>,<span class="keyword">False</span>,<span class="keyword">True</span>]]</div><div class="line">Out[<span class="number">74</span>]: array([<span class="number">-3</span>,  <span class="number">5</span>])</div></pre></td></tr></table></figure></p>
-<h1 id="3-附录（参考资料）"><a href="#3-附录（参考资料）" class="headerlink" title="3.附录（参考资料）"></a>3.附录（参考资料）</h1><p>文档：<br><a href="https://docs.scipy.org/doc/numpy-dev/reference/index.html#reference" target="_blank" rel="external">https://docs.scipy.org/doc/numpy-dev/reference/index.html#reference</a></p>
-<p><a href="http://old.sebug.net/paper/books/scipydoc/numpy_intro.html" target="_blank" rel="external">numpy快速处理数据</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/02/numpy-handbook-01/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1536,300 +1816,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/29/Kettle-handbook-06/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/29/Kettle-handbook-06/" itemprop="url">Kettle手册（六）- Hop小记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-29T22:24:44+08:00">
-                2017-03-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ETL-Kettle/" itemprop="url" rel="index">
-                    <span itemprop="name">ETL-Kettle</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="1-什么是Hop"><a href="#1-什么是Hop" class="headerlink" title="1. 什么是Hop"></a>1. 什么是Hop</h1><p>在我们前面，使用Kettle过程中，控件与控件之间的连线，这里，我们详细介绍下它，它在Kettle中叫Hop（跳）。<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-01.png-blog.photo" alt="Kettle-handbook-06-01.png"><br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-06-02.png-blog.photo" alt="Kettle-handbook-06-02.png"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/29/Kettle-handbook-06/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/28/Kettle-handbook-05/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="于贵洋">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于贵洋的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/28/Kettle-handbook-05/" itemprop="url">Kettle手册（五）- 实例-增量同步数据</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T23:30:44+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ETL-Kettle/" itemprop="url" rel="index">
-                    <span itemprop="name">ETL-Kettle</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>综合前面的几个例子，我们这里来是实现下增量数据的同步。<br>这里只是分享一种方法，实际工作中，还会有其他更好的方案。<br>增量同步的整体思路一般就是：首先拿到这张表的增量数据，怎么拿增量呢，源表需要有一个时间字段，代表该条记录的最新更新时间（及只要该条记录变化，该时间字段就会更新），当然有时间字段最好了，没有的话，可能需要做全表对比之类的操作；正常情况下，业务系统的表中都是有主键的，我们拿到增量数据之后，需要判断该记录的新插入的，还是更新的记录，如果是更新记录，我们需要先将数据加载到中间表，然后，根据主键将目标表中已存在的数据删除，最后再将本次的增量数据插入到目标表。</p>
-<h2 id="1-配置表的设计（元数据表）"><a href="#1-配置表的设计（元数据表）" class="headerlink" title="1.配置表的设计（元数据表）"></a>1.配置表的设计（元数据表）</h2><p>首先我们需要一张配置表，来保存我们要增量同步的表的基本信息<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">--元数据表</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> tm_etl_table(</div><div class="line">	table_name <span class="built_in">varchar</span>(<span class="number">50</span>), <span class="comment">--表名</span></div><div class="line">	is_run <span class="built_in">int</span> , <span class="comment">--调度状态</span></div><div class="line">	update_time <span class="keyword">timestamp</span>,<span class="comment">--表数据更新时间</span></div><div class="line">	etl_insert_time <span class="keyword">timestamp</span> <span class="comment">--记录更新时间</span></div><div class="line">);</div></pre></td></tr></table></figure></p>
-<p>我们初始化一条记录，我们就以这张ods_tm_book表<br><img src="http://7xl61k.com1.z0.glb.clouddn.com/Kettle-handbook-05-01.png-blog.photo" alt="Kettle-handbook-05-01.png"><br>一些基础表准备</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/28/Kettle-handbook-05/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1882,7 +1868,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1893,7 +1879,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1904,7 +1890,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
