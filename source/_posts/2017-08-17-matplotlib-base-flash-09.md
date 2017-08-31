@@ -33,6 +33,9 @@ interval : number, optional
 repeat_delay : number, optional
 repeat : bool, optional
 ```
+
+<!-- more -->
+
 小栗子
 ``` python
 # -*- coding: utf-8 -*-
@@ -131,4 +134,4 @@ print(ims)
 plt.show() 
 ```
 
-![matplotlib-base-flash-09-05](http://7xl61k.com1.z0.glb.clouddn.com/matplotlib-base-flash-09-05.png-blog.photo)
+![matplotlib-base-flash-09-05](http://7xl61k.com1.z0.glb.clouddn.com/matplotlib-base-flash-09-05.gif-blog.photo)

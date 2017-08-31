@@ -27,6 +27,8 @@ SQL笔试题
 
 同学们先思考下，整理下思路，如果没有思路或者某几个点不了解，就可以继续往下看了。
 
+<!-- more -->
+
 ## 测试数据
 ``` sql
 CREATE TABLE interview.tm_login_log
