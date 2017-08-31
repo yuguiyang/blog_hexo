@@ -190,6 +190,27 @@ and a.running_days = b.running_days
 ```
 ![data-analyst-interview-sql-03-04](http://7xl61k.com1.z0.glb.clouddn.com/data-analyst-interview-sql-03-04.png-blog.photo)
 
+### 连续5天登录用户
+这里补充另一个类似的问题，这里，我们想看连续登录5天的用户，使用上面的方法可以实现，这里介绍一个更快的方法：
+是使用一个函数
+``` sql
+向前取n位
+lag(value anyelement [, offset integer [, default anyelement ]])
+
+select *from (
+	select 
+		a.user_id,
+		a.login_date,
+		--5天前的登录日期
+		lag(a.login_date,4) over(partition by a.user_id order by a.login_date) pre_five_day 
+	from interview.tm_login_log a 
+)x
+where date_part('day',x.login_date::timestamp - pre_five_day::timestamp)=4
+```
+这样取连续登录的话，比较方便
+
+### 思考题：连续7天未登录用户
+这里留一个类似的小问题，大家自行练习下
 
 ## 小结
 我们简单整理下思路，上面的例子，我认为主要是一个思路的介绍，核心就是我们要找到一个判断连续的方法，找到方法后，SQL自然就一步一步想出来了。
