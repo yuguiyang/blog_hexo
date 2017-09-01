@@ -20,3 +20,8 @@ Hi，你好，欢迎访问我的博客。
 哈哈，在丽江，到处都是这首歌，挺好听的呀
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=274859&auto=1&height=66"></iframe>
 
+
+***
+请我吃饭，教我吉他，带我出去玩儿，请加微信，验证消息注明来自我的博客...
+![my_wechat.jpg](http://7xl61k.com1.z0.glb.clouddn.com/my_wechat.jpg-blog.photo)
+
