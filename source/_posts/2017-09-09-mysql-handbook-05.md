@@ -105,9 +105,21 @@ from
 ![mysql-handbook-05-01](http://7xl61k.com1.z0.glb.clouddn.com/mysql-handbook-05-01.png-blog.photo)
 
 但在MySQL中，就没这么方便了，我们需要使用变量，来模拟实现
+这里的思路和上面的思路一样，我们需要一个变量来保存上一条记录的课程名称，
+如果课程名称一样，则继续排名，如果不一样，则重新开始排名
 ``` sql
+set @rn:=0;
+set @pre_course:=null;
 
+select 
+    course_name,
+    s_id,
+    score,
+    if(@pre_course=course_name,@rn:=@rn+1,@rn:=0),
+    @pre_course:= course_name 
+from t_score 
+order by course_name,score desc;
 ```
 
 
-> 先到这，明天接着写
+![分组排序](http://upload-images.jianshu.io/upload_images/76024-91fb3a9a983c21d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
