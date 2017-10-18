@@ -12,6 +12,73 @@ MySQL
 
 这里吧同学们遇到的问题都汇总起来，方便大家一起查阅。
 
+## update at 2017-10-13
+
+### Workbench安装问题
+昨天就说过Workbench的安装问题，具体的可以往下看，这里记录一个类似问题
+因为安装Workbench需要一些依赖先安装，比如那个.NET Framework，官网上提供的连接地址应该没有修改，如果直接跳转去下载，应该是.NET FRAMEWORK４.５的，但实际安装的时候，是需要4.5.2的
+
+![](http://upload-images.jianshu.io/upload_images/76024-dffabb12e4e55bb0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+而且在安装4.5的时候，可能还会遇到这样的情况，说本地已经安装过了，所以去下载4.5.2就可以了，
+![](http://upload-images.jianshu.io/upload_images/76024-5a3b8ff3e217c3c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+后面经过同学的验证，就是这样解决的，没有问题。
+
+<!-- more -->
+
+### 连接测试数据库
+今天遇到一个使用客户端连接测试数据库一直不行的问题。背景是这样的：
+测试数据库在阿里云上，很多人都可以访问，说明数据库配置啥的没有问题，但是有一位同学的电脑就是访问不了，报下面这个错误
+![](http://upload-images.jianshu.io/upload_images/76024-ef1392a615f872ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+网上也找过，都说是服务器端配置问题，但是已知服务器端没有问题，这就奇了怪了，该电脑也是可以ping通服务器的。后面了解到，这位同学是在外企，公司的网络是美国的网络，但是网上查说国外访问国内的阿里云是可以的。没有想到其他什么原因，估计就是所在的公司网络有问题，导致连不到阿里云。
+最后，同学回家后，用家里的网络就可以访问了。
+这种问题，常见解决方法就是，排查2个方面
+* 服务器端配置问题
+* 本地网络问题
+
+###SQLZoo练习题
+原题地址[http://zh.sqlzoo.net/wiki/More_JOIN_operations](http://zh.sqlzoo.net/wiki/More_JOIN_operations)
+第13题
+
+![](http://upload-images.jianshu.io/upload_images/76024-8c0eb786227f36eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+这道题呢，不是很难，有2点比较难
+* 英文的，哈哈，借助了有道翻译
+* 一个字段没理解含义，导致出错
+
+题目是啥意思呢？就是说要返回一个演员列表，按照字母顺序，主演过30个以上的角色
+我们只要搞明白那几张表就行了
+
+![](http://upload-images.jianshu.io/upload_images/76024-95c5eb48169c9f45.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+这个演员名单表，存的是电影ID和演员ID，注意这个ord表示的是，电影中演员的排名，ord=1才表示主演
+参考介绍[http://zh.sqlzoo.net/wiki/More_details_about_the_database.](http://zh.sqlzoo.net/wiki/More_details_about_the_database.)
+
+![](http://upload-images.jianshu.io/upload_images/76024-b457f4b239165e2b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+这些都搞明白，SQL就容易了
+``` sql
+select name from actor where id in (select actorid from casting where ord=1 group by actorid having count(distinct movieid)>=30)
+order by name desc
+
+-- 或者这样
+select a.name from actor a 
+join casting b on a.id=b.actorid 
+where b.ord=1 
+group by a.name
+having count(distinct b.movieid)>=30
+
+```
+上面的order by可以不要，好辣，今天问题整理到这里。
+
+***
+
+
+
 ## update at 2017-10-12
 
 ### 1. Workbench、Navicat是干嘛的，和SQL有啥关系？
@@ -30,7 +97,7 @@ SQL是一套标准，其他每个数据库都会实现规定的基本功能，�
 
 
 ### 2. Workbench的使用
-参考：[MySQL-Workbench使用](http://yuguiyang.github.io/2017/10/12/mysql-handbook-08/)
+参考：[MySQL-Workbench使用](http://yuguiyang.github.io/2017/10/12/mysql-handbook-11/)
 
 ### 3. sqlzoo第九题
 题目地址: [sqlzoo](https://sqlzoo.net/wiki/SELECT_within_SELECT_Tutorial/zh)
@@ -122,6 +189,9 @@ select name,continent,population from world where continent in (
 )
 ```
 好了，这个问题，也写到这，大家可以看看还有没有别的写法。
+
+
+
 
 
 
